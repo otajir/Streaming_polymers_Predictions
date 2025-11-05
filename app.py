@@ -67,9 +67,9 @@ st.markdown("Plateforme de prédiction **MELT / IZOD / FLEX** avec sauvegarde au
 @st.cache_resource
 def load_models():
     models = {
-        "MELT_ANA": joblib.load("LightGBM_MELT_ANA_model.pkl"),
-        "IZOD_ANA": joblib.load("BestModel_IZOD_ANA_XGBoost.pkl"),
-        "FLEX_ANA": joblib.load("BestModel_FLEX_ANA_LightGBM_v2.pkl")
+        "MELT_ANA": joblib.load(os.path.join(base_path, "LightGBM_MELT_ANA_model.pkl")),
+        "IZOD_ANA": joblib.load(os.path.join(base_path, "BestModel_IZOD_ANA_XGBoost.pkl")),
+        "FLEX_ANA": joblib.load(os.path.join(base_path, "BestModel_FLEX_ANA_LightGBM_v2.pkl"))
     }
     return models
 
@@ -344,4 +344,5 @@ if st.button("⚙️ Calculer et lancer la prédiction", type="primary"):
     if valeur_reelle:
         erreur = abs(melt_val - valeur_reelle) if melt_val != "N/A" else None
         if erreur:
+
             st.info(f"📏 Valeur réelle : **{valeur_reelle}** | Erreur : **{erreur:.3f}**")
